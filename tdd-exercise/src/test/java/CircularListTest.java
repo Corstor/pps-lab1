@@ -78,4 +78,15 @@ public class CircularListTest {
             () -> assertEquals(Optional.of(SECOND_ELEMENT), secondElement)
         );
     }
+
+    @Test public void testPreviousWithTwoElements(){
+        circularList.add(FIRST_ELEMENT);
+        circularList.add(SECOND_ELEMENT);
+        Optional<Integer> firstElement = circularList.previous();
+        Optional<Integer> secondElement = circularList.previous();
+        assertAll(
+            () -> assertEquals(Optional.of(FIRST_ELEMENT), firstElement),
+            () -> assertEquals(Optional.of(SECOND_ELEMENT), secondElement)
+        );
+    }
 }
