@@ -117,7 +117,19 @@ public class CircularListTest {
 
     @Test public void testReset(){
         circularList.add(FIRST_ELEMENT);
+        circularList.add(SECOND_ELEMENT);
+        circularList.add(THIRD_ELEMENT);
+
+        Optional<Integer> firstElement = circularList.next();
+        Optional<Integer> secondElement = circularList.next();
+
         circularList.reset();
-        assertTrue(circularList.isEmpty());
+        Optional<Integer> afterResetElement = circularList.next();
+
+        assertAll(
+            () -> assertEquals(Optional.of(FIRST_ELEMENT), firstElement),
+            () -> assertEquals(Optional.of(SECOND_ELEMENT), secondElement),
+            () -> assertEquals(Optional.of(FIRST_ELEMENT), afterResetElement)
+        );
     }
 }

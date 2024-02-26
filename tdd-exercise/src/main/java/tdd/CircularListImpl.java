@@ -83,7 +83,7 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public void reset() {
-        this.list.clear();
+        this.index = INDEX_STARTING_VALUE;
     }
 
 }
