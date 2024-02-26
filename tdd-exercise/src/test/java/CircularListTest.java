@@ -114,4 +114,10 @@ public class CircularListTest {
             () -> assertEquals(Optional.of(THIRD_ELEMENT), thirdCircularElement)
         );
     }
+
+    @Test public void testReset(){
+        circularList.add(FIRST_ELEMENT);
+        circularList.reset();
+        assertTrue(circularList.isEmpty());
+    }
 }

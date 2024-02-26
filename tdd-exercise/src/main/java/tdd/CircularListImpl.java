@@ -83,7 +83,7 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public void reset() {
-        throw new UnsupportedOperationException("Unimplemented method 'reset'");
+        this.list.clear();
     }
 
 }
