@@ -79,7 +79,7 @@ public class CircularListTest {
         );
     }
 
-    @Test public void testcircularNextWithThreeElements(){
+    @Test public void testCircularNextWithThreeElements(){
         circularList.add(FIRST_ELEMENT);
         circularList.add(SECOND_ELEMENT);
         circularList.add(THIRD_ELEMENT);
@@ -94,6 +94,24 @@ public class CircularListTest {
             () -> assertEquals(Optional.of(SECOND_ELEMENT), secondElement),
             () -> assertEquals(Optional.of(THIRD_ELEMENT), thirdElement),
             () -> assertEquals(Optional.of(FIRST_ELEMENT), firstCircularElement)
+        );
+    }
+
+    @Test public void testCircularPreviousWithThreeElements(){
+        circularList.add(FIRST_ELEMENT);
+        circularList.add(SECOND_ELEMENT);
+        circularList.add(THIRD_ELEMENT);
+
+        Optional<Integer> thirdElement = circularList.previous();
+        Optional<Integer> secondElement = circularList.previous();
+        Optional<Integer> firstElement = circularList.previous();
+        Optional<Integer> thirdCircularElement = circularList.previous();
+
+        assertAll(
+            () -> assertEquals(Optional.of(THIRD_ELEMENT), thirdElement),
+            () -> assertEquals(Optional.of(SECOND_ELEMENT), secondElement),
+            () -> assertEquals(Optional.of(FIRST_ELEMENT), firstElement),
+            () -> assertEquals(Optional.of(THIRD_ELEMENT), thirdCircularElement)
         );
     }
 }
