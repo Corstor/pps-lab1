@@ -1,3 +1,4 @@
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,6 +20,7 @@ public class CircularListTest {
     private static final int EMPTY_LIST = 0;
     private static final int FIRST_ELEMENT = 1;
     private static final int SECOND_ELEMENT = 2;
+    private static final int LIST_SIZE_WITH_TWO_ELEMENTS = 2;
 
     private CircularList circularList;
 
@@ -46,4 +48,15 @@ public class CircularListTest {
     @Test public void testPreviousOnEmptyListIsEmpty() {
         assertEquals(Optional.empty(), circularList.previous());
     }
+
+    @Test public void testAddTwoElements(){
+        circularList.add(FIRST_ELEMENT);
+        circularList.add(SECOND_ELEMENT);
+        assertAll(
+            () -> assertEquals(LIST_SIZE_WITH_TWO_ELEMENTS, circularList.size()), 
+            () -> assertFalse(circularList.isEmpty())
+        );
+    }
+
+    
 }
