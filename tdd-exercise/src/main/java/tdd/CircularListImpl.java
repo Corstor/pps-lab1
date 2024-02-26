@@ -6,6 +6,9 @@ import java.util.Optional;
 
 public class CircularListImpl implements CircularList {
 
+    private static final int FIRST_ELEMENT = 0;
+    private static final int OFFSET_LAST_ELEMENT = 1;
+
     private final List<Integer> list = new ArrayList<>();
     private int index = -1;
 
@@ -26,8 +29,12 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public Optional<Integer> next() {
-        index = index + 1;
+        index = isLastElement() ? FIRST_ELEMENT : index + 1;
         return getElement();
+    }
+
+    private boolean isLastElement() {
+        return index == (size() - OFFSET_LAST_ELEMENT);
     }
 
     @Override

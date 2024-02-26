@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import tdd.CircularList;
@@ -20,6 +19,7 @@ public class CircularListTest {
     private static final int EMPTY_LIST = 0;
     private static final int FIRST_ELEMENT = 1;
     private static final int SECOND_ELEMENT = 2;
+    private static final int THIRD_ELEMENT = 3;
     private static final int LIST_SIZE_WITH_TWO_ELEMENTS = 2;
 
     private CircularList circularList;
@@ -79,14 +79,21 @@ public class CircularListTest {
         );
     }
 
-    @Test public void testPreviousWithTwoElements(){
+    @Test public void testcircularNextWithThreeElements(){
         circularList.add(FIRST_ELEMENT);
         circularList.add(SECOND_ELEMENT);
-        Optional<Integer> firstElement = circularList.previous();
-        Optional<Integer> secondElement = circularList.previous();
+        circularList.add(THIRD_ELEMENT);
+
+        Optional<Integer> firstElement = circularList.next();
+        Optional<Integer> secondElement = circularList.next();
+        Optional<Integer> thirdElement = circularList.next();
+        Optional<Integer> firstCircularElement = circularList.next();
+
         assertAll(
             () -> assertEquals(Optional.of(FIRST_ELEMENT), firstElement),
-            () -> assertEquals(Optional.of(SECOND_ELEMENT), secondElement)
+            () -> assertEquals(Optional.of(SECOND_ELEMENT), secondElement),
+            () -> assertEquals(Optional.of(THIRD_ELEMENT), thirdElement),
+            () -> assertEquals(Optional.of(FIRST_ELEMENT), firstCircularElement)
         );
     }
 }
