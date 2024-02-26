@@ -25,12 +25,12 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public Optional<Integer> next() {
-        throw new UnsupportedOperationException("Unimplemented method 'next'");
+        return Optional.empty();
     }
 
     @Override
     public Optional<Integer> previous() {
-        throw new UnsupportedOperationException("Unimplemented method 'previous'");
+        return Optional.empty();
     }
 
     @Override
