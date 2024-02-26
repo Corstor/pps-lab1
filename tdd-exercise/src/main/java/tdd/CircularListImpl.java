@@ -25,12 +25,16 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public Optional<Integer> next() {
-        return Optional.empty();
+        return getElement();
     }
 
     @Override
     public Optional<Integer> previous() {
-        return Optional.empty();
+        return getElement();
+    }
+
+    private Optional<Integer> getElement() {
+        return list.isEmpty() ? Optional.empty() : Optional.of(list.get(0));
     }
 
     @Override

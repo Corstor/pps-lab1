@@ -58,5 +58,13 @@ public class CircularListTest {
         );
     }
 
-    
+    @Test public void testNextWithOneElement(){
+        circularList.add(FIRST_ELEMENT);
+        assertEquals(Optional.of(FIRST_ELEMENT), circularList.next());
+    }
+
+    @Test public void testPreviousWithOneElement(){
+        circularList.add(FIRST_ELEMENT);
+        assertEquals(Optional.of(FIRST_ELEMENT), circularList.previous());
+    }
 }
