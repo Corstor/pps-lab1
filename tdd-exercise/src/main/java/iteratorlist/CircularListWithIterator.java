@@ -6,4 +6,6 @@ public interface CircularListWithIterator {
 
     int size();
 
+    void add(int firstElement);
+
 }

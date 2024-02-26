@@ -1,15 +1,25 @@
 package iteratorlist;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class CircularListWithIteratorImpl implements CircularListWithIterator {
+
+    private List<Integer> list = new LinkedList<>();
 
     @Override
     public boolean isEmpty() {
-        return true;
+        return this.list.isEmpty();
     }
 
     @Override
     public int size() {
-        return 0;
+        return this.list.size();
+    }
+
+    @Override
+    public void add(int firstElement) {
+        this.list.add(firstElement);
     }
 
 }
