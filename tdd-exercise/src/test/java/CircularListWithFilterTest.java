@@ -15,8 +15,9 @@ public class CircularListWithFilterTest {
     private static final int INITIAL_SIZE = 0;
     private static final int FIRST_ELEMENT = 1;
     private static final int SECOND_ELEMENT = 2;
+    private static final int THIRD_ELEMENT = 3;
     private static final int SIZE_WITH_TWO_ELEMENTS = 2;
-
+    
     private CircularListWithFilter circularList;
 
     @BeforeEach public void createCircularListWithFilter(){
@@ -43,5 +44,35 @@ public class CircularListWithFilterTest {
 
     @Test public void testNextWithZeroElements(){
         assertEquals(Optional.empty(), circularList.next());
+    }
+
+    @Test public void testPreviousWithZeroElements(){
+        assertEquals(Optional.empty(), circularList.previous());
+    }
+
+    @Test public void testNextWithThreeElements(){
+        circularList.add(FIRST_ELEMENT);
+        circularList.add(SECOND_ELEMENT);
+        circularList.add(THIRD_ELEMENT);
+
+        assertAll(
+            () -> assertEquals(Optional.of(FIRST_ELEMENT), circularList.next()),
+            () -> assertEquals(Optional.of(SECOND_ELEMENT), circularList.next()),
+            () -> assertEquals(Optional.of(THIRD_ELEMENT), circularList.next()),
+            () -> assertEquals(Optional.of(FIRST_ELEMENT), circularList.next())
+        );
+    }
+
+    @Test public void testPreviousWithThreeElements(){
+        circularList.add(FIRST_ELEMENT);
+        circularList.add(SECOND_ELEMENT);
+        circularList.add(THIRD_ELEMENT);
+
+        assertAll(
+            () -> assertEquals(Optional.of(THIRD_ELEMENT), circularList.previous()),
+            () -> assertEquals(Optional.of(SECOND_ELEMENT), circularList.previous()),
+            () -> assertEquals(Optional.of(FIRST_ELEMENT), circularList.previous()),
+            () -> assertEquals(Optional.of(THIRD_ELEMENT), circularList.previous())
+        );
     }
 }

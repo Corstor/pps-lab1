@@ -12,4 +12,6 @@ public interface CircularListWithFilter {
 
     Optional<Integer> next();
 
+    Optional<Integer> previous();
+
 }

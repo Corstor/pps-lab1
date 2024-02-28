@@ -1,12 +1,13 @@
 package filterlist;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
+
+import tdd.CircularList;
+import tdd.CircularListImpl;
 
 public class CircularListWithFilterImpl implements CircularListWithFilter {
 
-    private List<Integer> list = new LinkedList<>();
+    private CircularList list = new CircularListImpl();
 
     @Override
     public boolean isEmpty() {
@@ -25,7 +26,12 @@ public class CircularListWithFilterImpl implements CircularListWithFilter {
 
     @Override
     public Optional<Integer> next() {
-        return Optional.empty();
+        return list.next();
+    }
+
+    @Override
+    public Optional<Integer> previous() {
+        return list.previous();
     }
 
 }
