@@ -17,4 +17,6 @@ public interface CircularListWithFilter {
 
     Optional<Integer> filteredNext(Predicate<Integer> predicate);
 
+    void reset();
+
 }

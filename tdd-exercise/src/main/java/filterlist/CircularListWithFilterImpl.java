@@ -47,4 +47,9 @@ public class CircularListWithFilterImpl implements CircularListWithFilter {
         return Optional.empty();
     }
 
+    @Override
+    public void reset() {
+        this.list.reset();
+    }
+
 }

@@ -88,4 +88,17 @@ public class CircularListWithFilterTest {
             () -> assertEquals(Optional.empty(), circularList.filteredNext((element) -> element > ELEMENT_NOT_IN_LIST))
         );
     }
+
+    @Test public void testReset(){
+        circularList.add(FIRST_ELEMENT);
+        circularList.add(SECOND_ELEMENT);
+        circularList.add(THIRD_ELEMENT);
+
+        Optional<Integer> first_element = circularList.next();
+        circularList.next();
+
+        circularList.reset();
+
+        assertEquals(first_element, circularList.next());
+    }
 }
