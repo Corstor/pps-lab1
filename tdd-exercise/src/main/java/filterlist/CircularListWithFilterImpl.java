@@ -2,6 +2,7 @@ package filterlist;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 public class CircularListWithFilterImpl implements CircularListWithFilter {
 
@@ -20,6 +21,11 @@ public class CircularListWithFilterImpl implements CircularListWithFilter {
     @Override
     public void add(int element) {
         list.add(element);
+    }
+
+    @Override
+    public Optional<Integer> next() {
+        return Optional.empty();
     }
 
 }
