@@ -7,4 +7,9 @@ public class CircularListWithFilterImpl implements CircularListWithFilter {
         return true;
     }
 
+    @Override
+    public int size() {
+        return 0;
+    }
+
 }
