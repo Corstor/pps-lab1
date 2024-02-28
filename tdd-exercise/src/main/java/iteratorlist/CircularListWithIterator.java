@@ -12,4 +12,6 @@ public interface CircularListWithIterator {
 
 	Iterator<Integer> forwardIterator();
 
+	Iterator<Integer> backwardIterator();
+
 }

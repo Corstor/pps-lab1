@@ -7,7 +7,8 @@ import java.util.NoSuchElementException;
 
 public class CircularListWithIteratorImpl implements CircularListWithIterator {
 
-    private static final int INITIAL_POSITION = 0;
+    private static final int FORWARD_INITIAL_POSITION = 0;
+    protected static final int OFFSET_TO_LAST_ELEMENT = 1;
     private List<Integer> list = new LinkedList<>();
 
     @Override
@@ -27,9 +28,18 @@ public class CircularListWithIteratorImpl implements CircularListWithIterator {
 
     @Override
     public Iterator<Integer> forwardIterator() {
-        return new Iterator<Integer>() {
+        return iterator(true);
+    }
 
-            private int index = INITIAL_POSITION;
+    @Override
+    public Iterator<Integer> backwardIterator() {
+        return iterator(false);
+    }
+
+    private Iterator<Integer> iterator(boolean isForwardIterator) {
+        return new Iterator<Integer>() {
+            private final int backwardInitialPosition = size() - OFFSET_TO_LAST_ELEMENT;
+            private int index = initialPosition();
 
             @Override
             public boolean hasNext() {
@@ -39,21 +49,38 @@ public class CircularListWithIteratorImpl implements CircularListWithIterator {
             @Override
             public Integer next() {
                 if (!hasNext()) {
-                    throw new NoSuchElementException("");
+                    throw new NoSuchElementException("The list is empty");
                 }
-                int nextValue = list.get(index);
-                incrementIndex();
-                return nextValue;
+                int valueToReturn = list.get(index);
+                updateIndex();
+                return valueToReturn;
+            }
+
+            private void updateIndex() {
+                if (this.index == lastPosition()){
+                    this.index = initialPosition();
+                } else if (isForwardIterator) {
+                    incrementIndex();
+                } else {
+                    decrementIndex();
+                }
+            }
+
+            private int lastPosition() {
+                return isForwardIterator ? backwardInitialPosition : FORWARD_INITIAL_POSITION;
+            }
+
+            private int initialPosition() {
+                return isForwardIterator ? FORWARD_INITIAL_POSITION : backwardInitialPosition;
             }
 
             private void incrementIndex() {
                 this.index++;
-                if (this.index == size()){
-                    this.index = INITIAL_POSITION;
-                }
             }
-            
+
+            private void decrementIndex() {
+                this.index--;
+            }
         };
     }
-
 }

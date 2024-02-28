@@ -68,4 +68,30 @@ public class CircularListWithIteratorTest {
             () -> assertThrows(NoSuchElementException.class, () -> iterator.next())
         );
     }
+
+    @Test public void testBackwardIterator() {
+        circularList.add(FIRST_ELEMENT);
+        circularList.add(SECOND_ELEMENT);
+        circularList.add(THIRD_ELEMENT);
+
+        Iterator<Integer> iterator = circularList.backwardIterator();
+
+        assertAll(
+            () -> assertTrue(iterator.hasNext()),
+            () -> assertEquals(THIRD_ELEMENT, iterator.next()),
+            () -> assertEquals(SECOND_ELEMENT, iterator.next()),
+            () -> assertEquals(FIRST_ELEMENT, iterator.next()),
+            () -> assertEquals(THIRD_ELEMENT, iterator.next()),
+            () -> assertTrue(iterator.hasNext())
+        );
+    }
+
+    @Test public void testBackwardIteratorWithoutValues() {
+        Iterator<Integer> iterator = circularList.backwardIterator();
+
+        assertAll(
+            () -> assertFalse(iterator.hasNext()),
+            () -> assertThrows(NoSuchElementException.class, () -> iterator.next())
+        );
+    }
 }
