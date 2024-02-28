@@ -37,20 +37,14 @@ public class CircularListWithFilterImpl implements CircularListWithFilter {
 
     @Override
     public Optional<Integer> filteredNext(Predicate<Integer> predicate) {
-        Optional<Integer> result = Optional.empty();
-        boolean found = false;
-        int index = 0;
-        while (!found && index < size()) {
-            var next = next();
+        for (int i = 0; i < size(); i++) {
+            Optional<Integer> next = next();
             if (predicate.test(next.get())) {
-                result = next;
-                found = true;
+                return next;
             }
-            
-            index++;
         }
 
-        return result;
+        return Optional.empty();
     }
 
 }
