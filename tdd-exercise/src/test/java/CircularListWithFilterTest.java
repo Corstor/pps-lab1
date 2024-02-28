@@ -16,6 +16,7 @@ public class CircularListWithFilterTest {
     private static final int FIRST_ELEMENT = 1;
     private static final int SECOND_ELEMENT = 2;
     private static final int THIRD_ELEMENT = 3;
+    private static final int ELEMENT_NOT_IN_LIST = 5;
     private static final int SIZE_WITH_TWO_ELEMENTS = 2;
     
     private CircularListWithFilter circularList;
@@ -73,6 +74,18 @@ public class CircularListWithFilterTest {
             () -> assertEquals(Optional.of(SECOND_ELEMENT), circularList.previous()),
             () -> assertEquals(Optional.of(FIRST_ELEMENT), circularList.previous()),
             () -> assertEquals(Optional.of(THIRD_ELEMENT), circularList.previous())
+        );
+    }
+
+    @Test public void testFilteredNext(){
+        circularList.add(FIRST_ELEMENT);
+        circularList.add(SECOND_ELEMENT);
+        circularList.add(THIRD_ELEMENT);
+
+        assertAll(
+            () -> assertEquals(Optional.of(FIRST_ELEMENT), circularList.filteredNext((element) -> true)),
+            () -> assertEquals(Optional.of(THIRD_ELEMENT), circularList.filteredNext((element) -> element > SECOND_ELEMENT)),
+            () -> assertEquals(Optional.empty(), circularList.filteredNext((element) -> element > ELEMENT_NOT_IN_LIST))
         );
     }
 }
