@@ -6,4 +6,6 @@ public interface CircularListWithFilter {
 
     int size();
 
+    void add(int element);
+
 }
